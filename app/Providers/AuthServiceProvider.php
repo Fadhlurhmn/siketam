@@ -4,25 +4,22 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\VehicleBooking;
+use App\Models\DriverSchedule;
+use App\Models\FuelLog;
+use App\Models\ServiceLog;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The model to policy mappings for the application.
-     *
-     * @var array<class-string, class-string>
-     */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        VehicleBooking::class => \App\Policies\VehicleBookingPolicy::class,
+        DriverSchedule::class => \App\Policies\DriverSchedulePolicy::class,
+        FuelLog::class => \App\Policies\FuelLogPolicy::class,
+        ServiceLog::class => \App\Policies\ServiceLogPolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     */
-    public function boot(): void
+    public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }
